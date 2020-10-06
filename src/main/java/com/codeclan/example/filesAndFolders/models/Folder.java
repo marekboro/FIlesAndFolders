@@ -1,18 +1,34 @@
 package com.codeclan.example.filesAndFolders.models;
-
-import javax.jws.soap.SOAPBinding;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
+@Table(name = "folders")
 public class Folder {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "title")
     private String title;
-    private ArrayList<File> files;
+
+    @JsonIgnoreProperties("folder")  // we could use instead !!! !!!     : @JsonBackReference
+    @OneToMany(mappedBy = "folder")
+    private List<File> files;
+
+    @JsonIgnoreProperties("folders")  // we could use instead !!! !!!     : @JsonBackReference
+//    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Folder(String title,User user) {
         this.title = title;
-        this.files = new ArrayList<File>();
+        this.files = new ArrayList<>();
         this.user = user;
     }
 
@@ -35,11 +51,11 @@ public class Folder {
         this.title = title;
     }
 
-    public ArrayList<File> getFiles() {
+    public List<File> getFiles() {
         return files;
     }
 
-    public void setFiles(ArrayList<File> files) {
+    public void setFiles(List<File> files) {
         this.files = files;
     }
 

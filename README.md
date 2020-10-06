@@ -3,9 +3,9 @@
 #### A one-to-many Spring application using Spring annotations
 
 The application should have the following models: 
-- [ ] Folders
-- [ ] Files
-- [ ] Users
+- [x] Folders
+- [x] Files
+- [x] Users
 - [ ] Users should have many folders
 - [ ] folders should have many files.
 - [ ] need to create repositories for each entity.
@@ -17,21 +17,17 @@ The application should have the following models:
 Create a system to track files and folders:
 
 1. A File should have:
-
-- a name
-- extension (e.g. txt, rb, java, ppt)
-- size
-- folder
+- [ ] a name
+- [ ] extension (e.g. txt, rb, java, ppt)
+- [ ] size
+- [ ] folder
 2. A User should have:
-
-- name
-- a list of folders
+- [ ] name
+- [ ] a list of folders
 3. A Folder should have:
-
-- a title
-- list of files
-- a user
-
+- [ ] a title
+- [ ] list of files
+- [ ] a user
 
 ## Planning:
 

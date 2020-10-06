@@ -1,12 +1,28 @@
 package com.codeclan.example.filesAndFolders.models;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name")
     private String name;
-    private ArrayList<Folder> folders;
+
+
+    @JsonIgnoreProperties("user")  // we could use instead !!! !!!     : @JsonBackReference
+//    @JsonBackReference
+    @OneToMany(mappedBy = "user")
+    private List<Folder> folders;
 
     public User(String name) {
         this.name = name;
@@ -32,11 +48,11 @@ public class User {
         this.name = name;
     }
 
-    public ArrayList<Folder> getFolders() {
+    public List<Folder> getFolders() {
         return folders;
     }
 
-    public void setFolders(ArrayList<Folder> folders) {
+    public void setFolders(List<Folder> folders) {
         this.folders = folders;
     }
 }

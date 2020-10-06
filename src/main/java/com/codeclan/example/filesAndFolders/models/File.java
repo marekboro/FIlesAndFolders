@@ -1,9 +1,30 @@
 package com.codeclan.example.filesAndFolders.models;
 
-public class File {
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+
+@Entity
+@Table(name = "files")
+public class File implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "extension")
     private FileType extension;
+
+    @JsonIgnoreProperties({"files"})  // we could use instead !!! !!!     : @JsonBackReference
+//    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name ="folder_id", nullable = false)
     private Folder folder;
 
     public File(String name, FileType extension, Folder folder) {
@@ -12,8 +33,7 @@ public class File {
         this.folder = folder;
     }
 
-    public File(Long id) {
-        this.id = id;
+    public File() {
     }
 
     public Long getId() {
