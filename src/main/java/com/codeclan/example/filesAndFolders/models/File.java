@@ -21,8 +21,8 @@ public class File implements Serializable {
     @Column(name = "extension")
     private FileType extension;
 
-    @JsonIgnoreProperties({"files"})  // we could use instead !!! !!!     : @JsonBackReference
-//    @JsonBackReference
+//    @JsonIgnoreProperties({"files"})  // we could use instead !!! !!!     : @JsonBackReference
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name ="folder_id", nullable = false)
     private Folder folder;

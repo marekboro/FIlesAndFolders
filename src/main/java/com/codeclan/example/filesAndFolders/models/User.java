@@ -19,8 +19,8 @@ public class User {
     private String name;
 
 
-    @JsonIgnoreProperties("user")  // we could use instead !!! !!!     : @JsonBackReference
-//    @JsonBackReference
+//    @JsonIgnoreProperties("user")  // we could use instead !!! !!!     : @JsonBackReference
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private List<Folder> folders;
 

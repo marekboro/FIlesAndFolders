@@ -16,7 +16,8 @@ public class Folder {
     @Column(name = "title")
     private String title;
 
-    @JsonIgnoreProperties("folder")  // we could use instead !!! !!!     : @JsonBackReference
+//    @JsonIgnoreProperties("folder")  // we could use instead !!! !!!     : @JsonBackReference
+    @JsonBackReference
     @OneToMany(mappedBy = "folder")
     private List<File> files;
 

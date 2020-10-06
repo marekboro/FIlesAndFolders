@@ -22,7 +22,7 @@ public class FileController {
 
     @GetMapping(value = "/files/{id}")
     public ResponseEntity getFile(@PathVariable Long id){
-        return new ResponseEntity(fileRepository.getOne(id),HttpStatus.OK);
+        return new ResponseEntity(fileRepository.findById(id),HttpStatus.OK);
     }
 
     @PostMapping(value = "/files")
